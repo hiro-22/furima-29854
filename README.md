@@ -8,11 +8,11 @@
 | nickname        | string | null: false |
 | email           | string | null: false |
 | password        | string | null: false |
+| first_name      | string | null: false |
 | family_name     | string | null: false |
 | first_name_kana | string | null: false |
 | family_name_kana| string | null: false |
 | birth_date      | date   | null: false |
-
 
  ### Association
 
@@ -32,10 +32,11 @@
 | prefecture_id   | integer    | null: false                   |
 | delivery_date_id| integer    | null: false                   |
 | price           | integer    | null: false                   |
+
 ### Association
 
 - belongs_to :user
-- has_one :orders
+- has_one :order
 
 
 ## orders テーブル
@@ -57,8 +58,8 @@
 | -------      | ---------- | ------------------------------ |
 | post_code    | string     | null: false                    |
 | prefecture_id| string     | null: false                    |
-| city         | string     |                                |
-| city2        | string     |                                |
+| city         | string     | null: false                    |
+| city2        | string     | null: false                    |
 | bill         | string     |                                |
 | phone_num    | integer    | null: false                    |
 | order        | references | null: false, foreign_key: true |
