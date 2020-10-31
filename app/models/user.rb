@@ -4,15 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-      validates :nickname, presence: true
+    with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } do
+      validates :nickname
+    end
 
     # validates :email, presence: true, uniqueness: true  (deviseの機能に入っている
-    # 下記記述ミスのためかエラーとなる為、14,15行の記述内容に変更。
-    # with_options presense: true, format: { with: /\A[a-z0-9]+\z/i } do
-    #  validates :password
-    # end
-    VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
-      validates :password, format: { with: VALID_PASSWORD_REGEX }
+    VALID_PASSWORD_REGEX =/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])\w{6,12}\z/
+    validates :password, presence: true,
+     format: { with: VALID_PASSWORD_REGEX,
+     message: "は半角6~12文字英大文字・小文字・数字それぞれ１文字以上含む必要があります"}
 
     with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } do
       validates :first_name 
