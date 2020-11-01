@@ -6,11 +6,7 @@ class User < ApplicationRecord
 
       validates :nickname, presence: true
 
-    # validates :email, presence: true, uniqueness: true  (deviseの機能に入っている
-    # 下記記述ミスのためかエラーとなる為、14,15行の記述内容に変更。
-    # with_options presense: true, format: { with: /\A[a-z0-9]+\z/i } do
-    #  validates :password
-    # end
+
     VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
       validates :password, format: { with: VALID_PASSWORD_REGEX }
 
