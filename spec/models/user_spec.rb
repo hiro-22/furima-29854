@@ -54,7 +54,16 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-
+      it 'パスワードに数字が含まれない場合無効な状態であること' do
+        @user.password = "aaaaaa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it "passwordが全角文字では登録できない" do
+        @user.password = "全角"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
       it "first_nameがない場合は登録できない" do
         @user.first_name = ""
         @user.valid?
