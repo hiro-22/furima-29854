@@ -7,7 +7,7 @@ RSpec.describe Item, type: :model do
     # userをファクトリーから持ってきましょう
     # :itemの後ろにユーザーのキーバリューを設定しましょう
     # imageを生成しましょう　@item.
-    user = FactoryBot.create(:user)
+    #user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item, user_id: user.id)
     @item.image = fixture_file_upload('public/images/test_image.png')
   end
