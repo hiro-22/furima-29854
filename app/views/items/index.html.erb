@@ -127,13 +127,13 @@
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <%# @items.each do|item| %>
+      <% @items.each do|item| %>
       <li class='list'>
         <%= link_to "#" do %>
         <div class='item-img-content'>
-          <%# if item.image.attached? %>
-            <%# image_tag item.image, class: "item-img" %> 
-          <%#end%>
+          <% if item.image.attached? %>
+            <%= image_tag item.image, class: "item-img" %> 
+          <%end%>
           
 
           <%# 商品が売れていればsold outを表示しましょう %>
@@ -145,10 +145,10 @@
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%# item.name %>
+            <%= item.name %>
           </h3>
           <div class='item-price'>
-            <span><%# item.price %>円<br>(税込み)</span>
+            <span><%= item.price %>円<br>(税込み)</span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
