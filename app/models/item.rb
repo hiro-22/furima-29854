@@ -10,14 +10,17 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :order
 
-  validates :name,             presence: true
-  validates :description,      presence: true
-  validates :category_id,      presence: true,numericality: { other_than: 1 } 
-  validates :condition_id,     presence: true,numericality: { other_than: 1 } 
-  validates :potage_id,        presence: true,numericality: { other_than: 1 } 
-  validates :prefecture_id,    presence: true,numericality: { other_than: 1 } 
-  validates :delivery_date_id, presence: true,numericality: { other_than: 1 } 
-  validates :price,            presence: true
-
+  with_options presence: true do
+  validates :image
+  validates :name            
+  validates :description      
+  validates :category_id,      numericality: { other_than: 1 } 
+  validates :condition_id,     numericality: { other_than: 1 } 
+  validates :potage_id,        numericality: { other_than: 1 } 
+  validates :prefecture_id,    numericality: { other_than: 1 } 
+  validates :delivery_date_id, numericality: { other_than: 1 } 
+  validates :price,            numericality: { greater_than_or_equal_to: 300,less_than_or_equal_to: 9999999}
+  end
+  validates :price, format: {with: /\A[0-9]+\z/}
 
 end
