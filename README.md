@@ -60,7 +60,7 @@
 | prefecture_id| string     | null: false                    |
 | city         | string     | null: false                    |
 | city2        | string     | null: false                    |
-| bill         | string     |                                |
+| bldg         | string     |                                |
 | phone_num    | integer    | null: false                    |
 | order        | references | null: false, foreign_key: true |
 ### Association
