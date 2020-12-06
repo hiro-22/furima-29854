@@ -10,8 +10,8 @@ describe User do
         expect(@user).to be_valid
       end
       it "passwordは６文字以上であること" do
-        @user.password = "000000"
-        @user.password_confirmation = "000000"
+        @user.password = "a11111"
+        @user.password_confirmation = "a11111"
         expect(@user).to be_valid
       end
       it "passwordは半角英数字混合であること" do
