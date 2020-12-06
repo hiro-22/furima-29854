@@ -33,8 +33,13 @@ RSpec.describe Purchase, type: :model do
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Prefecture Select")
       end
-      it 'phone_numにはハイフンは不要で、10,11桁以内であること' do
-        @purchase.phone_num = '00122'
+      it 'phone_numはハイフンは不要であること' do
+        @purchase.phone_num = '090-1111-1111'
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Phone num is invalid")
+      end
+      it 'phone_numは、10,11桁以内であること' do
+        @purchase.phone_num = '0901111000022'
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Phone num is invalid")
       end
@@ -47,6 +52,16 @@ RSpec.describe Purchase, type: :model do
         @purchase.token = nil
         @purchase.valid?
         expect(@purchase.errors.full_messages).to include("Token can't be blank")
+      end
+      it "user_idが空では登録できないこと" do
+        @purchase.user_id = nil
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("User can't be blank")
+      end
+      it "item_idが空では登録できないこと" do
+        @purchase.item_id = nil
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

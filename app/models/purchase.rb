@@ -3,8 +3,7 @@ class Purchase
   attr_accessor  :postal_code, :prefecture_id, :city, :city2, :bldg, :phone_num, :user_id, :item_id, :token
     
 
-# ex
-#  numericality: { other_than: 0, message: 'Select' } 
+
 #addressモデル バリデーション
   with_options presence: true do
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
@@ -14,6 +13,8 @@ class Purchase
     validates :phone_num, format: {with: /\A\d{10,11}\z/}
 #orderモデル　バリデーション
     validates :token
+    validates :user_id
+    validates :item_id
   end
 
 
