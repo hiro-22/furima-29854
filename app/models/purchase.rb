@@ -12,9 +12,10 @@ class Purchase
     validates :city
     validates :city2
     validates :phone_num, format: {with: /\A\d{10,11}\z/}
-  end
 #orderモデル　バリデーション
-  validates :token, presence: true
+    validates :token
+  end
+
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)

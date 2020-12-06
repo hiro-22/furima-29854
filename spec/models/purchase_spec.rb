@@ -29,15 +29,13 @@ RSpec.describe Purchase, type: :model do
         expect(@purchase.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
       it 'prefectureを選択していないと保存できないこと' do
-        # @purchase.prefecture_id = 0
-        @purchase.prefecture_id = nil
+        @purchase.prefecture_id = 1
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Prefecture can't be blank", "Prefecture Select")
+        expect(@purchase.errors.full_messages).to include("Prefecture Select")
       end
       it 'phone_numにはハイフンは不要で、10,11桁以内であること' do
         @purchase.phone_num = '00122'
         @purchase.valid?
-        # binding.pry
         expect(@purchase.errors.full_messages).to include("Phone num is invalid")
       end
       it "phone_numが空では登録できないこと" do
