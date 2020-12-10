@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except:[:index,:show]
   before_action :set_item, only: [:show,:edit,:update,:destroy]
-  # before_action :current_user, only: [:edit,:update,:destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -31,9 +30,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    binding.pry
     if @item.update(item_params)
-      # @item.valid?
         redirect_to item_path
     else
       render :edit
